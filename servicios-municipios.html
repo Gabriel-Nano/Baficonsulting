@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios para Municipios | BAFI CONSULTING MCS</title>
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primario: #000000;
+            --color-secundario: #E89600;
+            --color-oscuro: #1a1a1a;
+            --color-acento: #fff8e1;
+            --color-texto: #333333;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+        body { background-color: var(--blanco); color: var(--color-texto); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--blanco);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--color-secundario);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 50px; width: auto; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--color-primario); }
+        .logo-text span { color: var(--color-secundario); }
+        .logo-subtext { font-size: 0.65rem; color: var(--color-texto); letter-spacing: 2px; margin-top: -4px; }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primario);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--color-secundario); }
+
+        /* --- HERO DEL SERVICIO --- */
+        .service-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(232,150,0,0.7)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 10%;
+            text-align: center;
+            color: var(--blanco);
+        }
+
+        .service-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .service-hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--color-secundario);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- DESCRIPCIÓN --- */
+        .service-intro {
+            padding: 4rem 10%;
+            background-color: var(--blanco);
+            text-align: center;
+        }
+
+        .service-intro h2 {
+            color: var(--color-primario);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-intro h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--color-secundario);
+            margin: 15px auto 0;
+        }
+
+        .service-intro p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* --- LISTA DE SERVICIOS --- */
+        .services-list {
+            padding: 4rem 10%;
+            background-color: var(--color-acento);
+        }
+
+        .services-list h3 {
+            color: var(--color-primario);
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: var(--blanco);
+            padding: 2rem;
+            border-radius: 5px;
+            border-left: 5px solid var(--color-secundario);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(232,150,0,0.2);
+        }
+
+        .service-item .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-item h4 {
+            color: var(--color-primario);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .service-item p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- ESPACIO PARA AGREGAR MÁS --- */
+        .more-services {
+            padding: 3rem 10%;
+            background-color: var(--blanco);
+            text-align: center;
+            border-top: 2px dashed #ddd;
+        }
+
+        .more-services p {
+            color: #888;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        /* --- CTA --- */
+        .service-cta {
+            padding: 4rem 10%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primario), var(--color-oscuro));
+            color: var(--blanco);
+        }
+
+        .service-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-cta p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            padding: 1.2rem 3rem;
+            border-radius: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border: 2px solid var(--color-secundario);
+        }
+
+        .btn-contact:hover {
+            background-color: transparent;
+            color: var(--color-secundario);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-primario);
+            color: #bdc3c7;
+            padding: 3rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--blanco);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-col .company-name {
+            color: var(--color-secundario);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--color-secundario);
+            font-size: 0.85rem;
+            color: var(--color-secundario);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-hero h1 { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .logo-text { font-size: 1.2rem; }
+            .logo-img { height: 45px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="logo-bafi.png" alt="BAFI CONSULTING MCS" class="logo-img">
+            <div>
+                <div class="logo-text">BAFI <span>CONSULTING</span></div>
+                <div class="logo-subtext">MCS</div>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Todos los Servicios</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Hero del Servicio -->
+    <section class="service-hero">
+        <h1>Servicios para Municipios</h1>
+        <p class="subtitle">Trabajamos junto a gobiernos locales para fortalecer la gestión pública y el desarrollo comunitario</p>
+    </section>
+
+    <!-- Introducción -->
+    <section class="service-intro">
+        <h2>Asesoramiento Integral</h2>
+        <p>
+            En <strong>BAFI CONSULTING MCS</strong> trabajamos junto a gobiernos locales para optimizar su gestión, 
+            mejorar la eficiencia administrativa y potenciar el desarrollo de sus comunidades. 
+            Nuestro equipo multidisciplinario acompaña a los municipios en cada etapa de su gestión.
+        </p>
+    </section>
+
+    <!-- Lista de Servicios -->
+    <section class="services-list">
+        <h3>Nuestros Servicios Municipales</h3>
+        <div class="services-grid">
+            
+            <!-- Servicio 1 -->
+            <div class="service-item">
+                <span class="icon">🏛️</span>
+                <h4>Readecuación de Estructuras Organizativas</h4>
+                <p>Optimizamos la estructura interna del municipio para mejorar la eficiencia operativa y la coordinación entre áreas.</p>
+            </div>
+
+            <!-- Servicio 2 -->
+            <div class="service-item">
+                <span class="icon">⚖️</span>
+                <h4>Asesoramiento Jurídico, Contable e Impositivo</h4>
+                <p>Brindamos asesoramiento integral en aspectos legales, contables, impositivos y financieros para una gestión transparente.</p>
+            </div>
+
+            <!-- Servicio 3 -->
+            <div class="service-item">
+                <span class="icon">👥</span>
+                <h4>Fortalecimiento de Áreas Municipales</h4>
+                <p>Incorporamos equipos profesionales especializados para potenciar las capacidades de cada área municipal.</p>
+            </div>
+
+            <!-- Servicio 4 -->
+            <div class="service-item">
+                <span class="icon">📊</span>
+                <h4>Proyectos con Especialistas Interdisciplinarios</h4>
+                <p>Desarrollamos proyectos integrales con expertos en diversas áreas para abordar desafíos complejos.</p>
+            </div>
+
+            <!-- Servicio 5 -->
+            <div class="service-item">
+                <span class="icon">📈</span>
+                <h4>Auditorías, Monitoreos y Evaluaciones</h4>
+                <p>Realizamos seguimiento y evaluación de programas municipales con indicadores clave de desempeño.</p>
+            </div>
+
+            <!-- Servicio 6 -->
+            <div class="service-item">
+                <span class="icon">📋</span>
+                <h4>Planes Estratégicos y Capacitación</h4>
+                <p>Formulamos planes estratégicos de desarrollo y programas de capacitación para el personal municipal.</p>
+            </div>
+
+            <!-- Servicio 7 -->
+            <div class="service-item">
+                <span class="icon">🤝</span>
+                <h4>Responsabilidad Social Municipal</h4>
+                <p>Colaboramos en el diseño e implementación de acciones de RSM para fortalecer el vínculo con la comunidad.</p>
+            </div>
+
+            <!-- Servicio 8 -->
+            <div class="service-item">
+                <span class="icon">💰</span>
+                <h4>Gestión de Financiamiento</h4>
+                <p>Gestionamos acceso a financiamiento nacional e internacional para proyectos de desarrollo local.</p>
+            </div>
+
+            <!-- Servicio 9 -->
+            <div class="service-item">
+                <span class="icon">🏢</span>
+                <h4>Oficinas y Salas Equipadas</h4>
+                <p>Proveemos oficinas y salas equipadas en Resistencia para reuniones, capacitaciones y eventos institucionales.</p>
+            </div>
+
+            <!-- ESPACIO PARA AGREGAR MÁS SERVICIOS -->
+            <!-- Copia y pega este bloque para agregar nuevos servicios -->
+            <!--
+            <div class="service-item">
+                <span class="icon">📌</span>
+                <h4>Nuevo Servicio</h4>
+                <p>Descripción del nuevo servicio que deseas agregar.</p>
+            </div>
+            -->
+
+        </div>
+    </section>
+
+    <!-- Espacio para futuros servicios -->
+    <section class="more-services">
+        <p>📍 Este espacio está disponible para agregar nuevos servicios municipales según las necesidades emergentes</p>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="contacto" class="service-cta">
+        <h3>¿Su municipio necesita asesoramiento?</h3>
+        <p>Contáctenos para una reunión informativa sin cargo. Evaluamos sus necesidades y diseñamos una propuesta a medida.</p>
+        <a href="mailto:consultingbafi@gmail.com" class="btn-contact">Solicitar Información</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="company-name">BAFI CONSULTING MCS</div>
+                <p>Consultoría Estratégica</p>
+                <p>Región y Mercosur</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Email: consultingbafi@gmail.com</p>
+                <p>Tel./WhatsApp: +54 362-591187</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ubicación</h4>
+                <p>Mitre 330</p>
+                <p>Resistencia - Chaco, Argentina</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 BAFI CONSULTING MCS. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>

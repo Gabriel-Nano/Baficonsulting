@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff | BAFI CONSULTING MCS</title>
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primario: #000000;
+            --color-secundario: #E89600;
+            --color-oscuro: #1a1a1a;
+            --color-acento: #fff8e1;
+            --color-texto: #333333;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+        body { background-color: var(--blanco); color: var(--color-texto); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--blanco);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--color-secundario);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 50px; width: auto; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--color-primario); }
+        .logo-text span { color: var(--color-secundario); }
+        .logo-subtext { font-size: 0.65rem; color: var(--color-texto); letter-spacing: 2px; margin-top: -4px; }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primario);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--color-secundario); }
+
+        /* --- HERO --- */
+        .staff-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(232,150,0,0.7)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 10%;
+            text-align: center;
+            color: var(--blanco);
+        }
+
+        .staff-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .staff-hero .tagline {
+            font-size: 1.5rem;
+            color: var(--color-secundario);
+            font-weight: 300;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* --- SECCIONES --- */
+        .section-title {
+            text-align: center;
+            color: var(--color-primario);
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-secundario);
+            margin: 15px auto 0;
+        }
+
+        /* --- SOCIOS --- */
+        .socios-section {
+            padding: 4rem 10%;
+            background-color: var(--color-acento);
+        }
+
+        .socios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .socio-card {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 5px solid var(--color-secundario);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .socio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(232,150,0,0.2);
+        }
+
+        .socio-card .avatar {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--color-secundario);
+            background: linear-gradient(135deg, var(--color-primario), var(--color-oscuro));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .socio-card .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .socio-card h3 {
+            color: var(--color-primario);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .socio-card .title {
+            color: var(--color-secundario);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .socio-card .badge {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: var(--color-primario);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* --- STAFF --- */
+        .staff-section {
+            padding: 4rem 10%;
+            background-color: var(--blanco);
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .staff-card {
+            background: var(--gris-claro);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--color-secundario);
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover {
+            background: var(--blanco);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .staff-card .avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-secundario), #f4a300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .staff-card .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .staff-card h3 {
+            color: var(--color-primario);
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .staff-card .title {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* --- TAGLINE --- */
+        .tagline-section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, var(--color-primario), var(--color-oscuro));
+            text-align: center;
+            color: var(--blanco);
+        }
+
+        .tagline-section blockquote {
+            font-size: 2rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--color-secundario);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        .tagline-section .author {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- CTA --- */
+        .service-cta {
+            padding: 4rem 10%;
+            text-align: center;
+            background-color: var(--blanco);
+        }
+
+        .service-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primario);
+        }
+
+        .service-cta p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            padding: 1.2rem 3rem;
+            border-radius: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border: 2px solid var(--color-secundario);
+        }
+
+        .btn-contact:hover {
+            background-color: transparent;
+            color: var(--color-secundario);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-primario);
+            color: #bdc3c7;
+            padding: 3rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--blanco);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-col .company-name {
+            color: var(--color-secundario);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--color-secundario);
+            font-size: 0.85rem;
+            color: var(--color-secundario);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .staff-hero h1 { font-size: 2rem; }
+            .socios-grid { grid-template-columns: 1fr; }
+            .staff-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="logo-bafi.png" alt="BAFI CONSULTING MCS" class="logo-img">
+            <div>
+                <div class="logo-text">BAFI <span>CONSULTING</span></div>
+                <div class="logo-subtext">MCS</div>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#novedades">Novedades</a>
+            <a href="staff.html">Staff</a>
+            <a href="index.html#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="staff-hero">
+        <h1>Nuestro Equipo</h1>
+        <p class="tagline">"Tu solución la construimos juntos"</p>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SOCIOS FUNDADORES (2 personas) -->
+    <!-- ============================================ -->
+    <section class="socios-section">
+        <h2 class="section-title">Socios Fundadores</h2>
+        <div class="socios-grid">
+            
+            <!-- SOCIO 1: ARACELI -->
+            <div class="socio-card">
+                <div class="avatar">
+                    <img src="fotos-staff/araceli-echarri.jpg" alt="Abg. Araceli Nohelí Echarri">
+                </div>
+                <h3>Araceli Nohelí Echarri</h3>
+                <p class="title">Socia Fundadora</p>
+                <span class="badge">Abogada</span>
+            </div>
+
+            <!-- SOCIO 2: CARLOS -->
+            <div class="socio-card">
+                <div class="avatar">
+                    <img src="fotos-staff/carlos-rubio.jpg" alt="Dr. Carlos Eduardo Rubio">
+                </div>
+                <h3>Carlos Eduardo Rubio</h3>
+                <p class="title">Socio Fundador</p>
+                <span class="badge">Doctor</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- EQUIPO PROFESIONAL (10 personas) -->
+    <!-- ============================================ -->
+    <section class="staff-section">
+        <h2 class="section-title">Equipo Profesional</h2>
+        <div class="staff-grid">
+            
+            <!-- STAFF 1: ANALIA -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/analia-perez.jpg" alt="Dra. Analía Margarita Pérez">
+                </div>
+                <h3>Analía Margarita Pérez</h3>
+                <p class="title">Abogada</p>
+            </div>
+
+            <!-- STAFF 2: CLARISA -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/clarisa-echarri.jpg" alt="Prof. Clarisa Mariné del Valle Echarri">
+                </div>
+                <h3>Clarisa Mariné del Valle Echarri</h3>
+                <p class="title">Profesora</p>
+            </div>
+
+            <!-- STAFF 3: CESAR -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/cesar-gonzalez.jpg" alt="Sr. César Ramón González">
+                </div>
+                <h3>Sr. César Ramón González</h3>
+                <p class="title">Colaborador</p>
+            </div>
+
+            <!-- STAFF 4: MARCOS -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/marcos-scotta.jpg" alt="Arq. Marcos Scotta">
+                </div>
+                <h3>Marcos Scotta</h3>
+                <p class="title">Arquitecto</p>
+            </div>
+
+            <!-- STAFF 5: GLADYS -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/gladys-valdez.jpg" alt="Lic. Gladys Valdéz">
+                </div>
+                <h3>Gladys Valdéz</h3>
+                <p class="title">Licenciada</p>
+            </div>
+
+            <!-- STAFF 6: NELSON -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/nelson-gomez.jpg" alt="Prof. Nelson Oscar Gómez">
+                </div>
+                <h3>Nelson Oscar Gómez</h3>
+                <p class="title">Profesor</p>
+            </div>
+
+            <!-- STAFF 7: SANTIAGO -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/santiago-gutierrez.jpg" alt="Tec. Santiago Gutiérrez">
+                </div>
+                <h3>Santiago Gutiérrez</h3>
+                <p class="title">Técnico</p>
+            </div>
+
+            <!-- STAFF 8: ALVARO -->
+            
+
+            <!-- STAFF 9: GUIDO -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/Guido-Cortiglia.jpg" alt="UX Designer, Redactor y Corrector.">
+                </div>
+                <h3>Guido Cortiglia</h3>
+                <p class="title">Colaborador</p>
+            </div>
+            
+            <!-- STAFF 10:CLAUDIA -->
+            <div class="staff-card">
+                <div class="avatar">
+                    <img src="fotos-staff/claudia-miserachs.jpg" alt="UX Designer, Redactor y Corrector.">
+                </div>
+                <h3>Claudia Miserachs</h3>
+                <p class="title">Licenciada</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tagline -->
+    <section class="tagline-section">
+        <blockquote>"Tu solución la construimos juntos"</blockquote>
+        <p class="author">— BAFI CONSULTING MCS</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="service-cta">
+        <h3>¿Quiere conocer más sobre nuestro equipo?</h3>
+        <p>Contáctenos para agendar una reunión y conocer cómo podemos ayudar a su organización.</p>
+        <a href="index.html#contacto" class="btn-contact">Contactar Ahora</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="company-name">BAFI CONSULTING MCS</div>
+                <p>Consultoría Estratégica</p>
+                <p>Región y Mercosur</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Email: consultingbafi@gmail.com</p>
+                <p>Tel./WhatsApp: +54 362-591187</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ubicación</h4>
+                <p>Mitre 330</p>
+                <p>Resistencia - Chaco, Argentina</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 BAFI CONSULTING MCS. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>

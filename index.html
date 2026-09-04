@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAFI CONSULTING MCS | Consultoría Estratégica</title>
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primario: #000000;
+            --color-secundario: #E89600;
+            --color-oscuro: #1a1a1a;
+            --color-acento: #fff8e1;
+            --color-texto: #333333;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+        body { background-color: var(--blanco); color: var(--color-texto); line-height: 1.6; scroll-behavior: smooth; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--blanco);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--color-secundario);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 55px; width: auto; }
+        .logo-text { font-size: 1.6rem; font-weight: 800; color: var(--color-primario); letter-spacing: 1px; }
+        .logo-text span { color: var(--color-secundario); }
+        .logo-subtext { font-size: 0.7rem; color: var(--color-texto); letter-spacing: 2px; margin-top: -4px; }
+
+        nav ul { display: flex; gap: 2rem; align-items: center; }
+        nav a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-primario);
+            padding: 0.8rem 0;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        nav a:hover { color: var(--color-secundario); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(232, 150, 0, 0.6)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--blanco);
+            padding: 0 20px;
+        }
+        .hero h1 { 
+            font-size: 2.8rem; 
+            margin-bottom: 1rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            line-height: 1.3;
+        }
+        .hero h1 span { color: var(--color-secundario); }
+        .hero p { 
+            max-width: 700px; 
+            font-size: 1.2rem; 
+            margin-bottom: 2rem; 
+            color: #f0f0f0; 
+            font-weight: 300;
+        }
+        .cta-button {
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            padding: 1rem 2.5rem;
+            border-radius: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border: 2px solid var(--color-secundario);
+        }
+        .cta-button:hover { background-color: transparent; color: var(--color-secundario); }
+
+        /* --- QUIÉNES SOMOS --- */
+        .quienes-somos {
+            padding: 5rem 10%;
+            background-color: var(--blanco);
+            text-align: center;
+        }
+        .quienes-somos h2 {
+            color: var(--color-primario);
+            font-size: 2.3rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        .quienes-somos h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--color-secundario);
+            margin: 15px auto 0;
+        }
+        .quienes-somos p {
+            font-size: 1.25rem;
+            color: var(--color-texto);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        /* --- VISIÓN Y MISIÓN --- */
+        .vision-mision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: var(--color-acento);
+        }
+        .vm-card {
+            padding: 4rem 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .vm-card h3 {
+            color: var(--color-primario);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--color-secundario);
+            padding-left: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .vm-card p {
+            font-size: 1.1rem;
+            color: var(--color-texto);
+            text-align: justify;
+            line-height: 1.8;
+        }
+        .vm-card.mision { background-color: var(--blanco); }
+
+        /* --- VALORES --- */
+        .valores {
+            padding: 5rem 10%;
+            background-color: var(--blanco);
+        }
+        .valores h2 {
+            text-align: center;
+            color: var(--color-primario);
+            font-size: 2.3rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .valores h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--color-secundario);
+            margin: 15px auto 0;
+        }
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .valor-card {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            border-top: 4px solid var(--color-secundario);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        .valor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(232,150,0,0.2);
+        }
+        .valor-card h4 {
+            color: var(--color-primario);
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .valor-card h4::before {
+            content: '◆';
+            color: var(--color-secundario);
+            font-size: 1.2rem;
+        }
+        .valor-card p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* --- SECCIÓN SERVICIOS --- */
+        .services-preview {
+            padding: 5rem 10%;
+            background-color: var(--gris-claro);
+        }
+        .services-preview h2 {
+            text-align: center;
+            color: var(--color-primario);
+            font-size: 2.3rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .services-preview h2::after {
+            content: ''; display: block; width: 70px; height: 4px;
+            background-color: var(--color-secundario); margin: 15px auto 0;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: var(--blanco);
+            padding: 2rem;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            border-top: 4px solid var(--color-secundario);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(232, 150, 0, 0.15);
+            border-color: var(--color-secundario);
+        }
+        .service-card h3 {
+            color: var(--color-primario);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .service-card h3::before { content: '▸'; color: var(--color-secundario); }
+        .service-card p { color: #666; font-size: 0.95rem; margin-bottom: 1.2rem; }
+        .service-card .btn-link {
+            color: var(--color-secundario);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .service-card .btn-link:hover { gap: 8px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-primario);
+            color: #bdc3c7;
+            padding: 3rem 5% 2rem;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap; justify-content: space-between;
+            gap: 2rem; max-width: 1200px; margin: 0 auto;
+        }
+        .footer-col h4 { color: var(--blanco); margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col p { margin-bottom: 0.6rem; font-size: 0.95rem; }
+        .footer-col .company-name { color: var(--color-secundario); font-weight: 700; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        
+        /* --- REDES SOCIALES --- */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background-color: var(--blanco);
+            color: var(--color-secundario);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center; margin-top: 2.5rem; padding-top: 1.5rem;
+            border-top: 2px solid var(--color-secundario);
+            font-size: 0.85rem; color: var(--color-secundario);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .vision-mision { grid-template-columns: 1fr; }
+            .vm-card { padding: 3rem 5%; }
+            .logo-text { font-size: 1.3rem; }
+            .logo-img { height: 45px; }
+            .quienes-somos, .valores, .services-preview { padding: 4rem 5%; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="logo-bafi.png" alt="BAFI CONSULTING MCS" class="logo-img">
+            <div>
+                <div class="logo-text">BAFI <span>CONSULTING</span></div>
+                <div class="logo-subtext">MCS</div>
+            </div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="staff.html">Staff</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="inicio" class="hero">
+        <h1>BAFI CONSULTING <span>MCS</span></h1>
+        <p>Consultoría Estratégica para el desarrollo de organizaciones en la región y el Mercosur</p>
+        <a href="#quienes-somos" class="cta-button">Conócenos</a>
+    </section>
+
+    <!-- Quiénes Somos -->
+    <section id="quienes-somos" class="quienes-somos">
+        <h2>Quiénes Somos</h2>
+        <p>
+            En <strong>BAFI CONSULTING MCS</strong> creemos que las organizaciones están llamadas a jugar un papel fundamental en la vertebración de nuestra sociedad juntamente con gobiernos, empresas y administraciones.
+        </p>
+    </section>
+
+    <!-- Visión y Misión -->
+    <section class="vision-mision">
+        <div class="vm-card">
+            <h3>Visión</h3>
+            <p>Ser una empresa de vanguardia en la región y el Mercosur, trabajando en redes empresariales para brindar la mejor cobertura a nuestros clientes.</p>
+        </div>
+        <div class="vm-card mision">
+            <h3>Misión</h3>
+            <p>Acompañar y potenciar el desarrollo de organizaciones (empresas nacionales y transnacionales, fundaciones, asociaciones, federaciones, colegios profesionales, instituciones, áreas gubernamentales internacionales, nacionales, provinciales, regionales y municipales) a través de una amplia oferta de servicios profesionales que faciliten el cumplimiento de su misión en la sociedad.</p>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="valores">
+        <h2>Nuestros Valores</h2>
+        <div class="valores-grid">
+            <div class="valor-card">
+                <h4>Confianza</h4>
+                <p>Entre los miembros de BAFI CONSULTING MCS y las personas que dirigen y desempeñan su trabajo en las organizaciones, para constituir una relación duradera que contribuya a mejorar la gestión.</p>
+            </div>
+            <div class="valor-card">
+                <h4>Espíritu de Servicio</h4>
+                <p>Colaboración con aquellas personas y organizaciones con las que trabaja, buscando siempre el beneficio mutuo y el éxito compartido.</p>
+            </div>
+            <div class="valor-card">
+                <h4>Profesionalidad</h4>
+                <p>Responsabilidad, esfuerzo, competencia y afán de mejora para prestar un servicio de calidad a quienes confían en nuestra empresa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="services-preview">
+        <h2>Áreas de Servicio</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="location.href='servicios-municipios.html'">
+                <h3>Servicios para Municipios</h3>
+                <p>Asesoramiento integral para gobiernos locales: planificación, gestión pública y desarrollo comunitario.</p>
+                <span class="btn-link">Ver más →</span>
+            </div>
+            <div class="service-card" onclick="location.href='servicios-administracion.html'">
+                <h3>Administración y Gestión</h3>
+                <p>Soluciones profesionales para optimizar procesos administrativos, financieros y operativos.</p>
+                <span class="btn-link">Ver más →</span>
+            </div>
+            <div class="service-card" onclick="location.href='servicios-comunicacion.html'">
+                <h3>Comunicación y RRPP</h3>
+                <p>Estrategias de comunicación institucional, gestión de imagen y relaciones con medios y públicos.</p>
+                <span class="btn-link">Ver más →</span>
+            </div>
+            <div class="service-card" onclick="location.href='servicios-captacion.html'">
+                <h3>Captación de Recursos</h3>
+                <p>Diseño y gestión de proyectos para acceder a financiamiento público, privado y cooperación internacional.</p>
+                <span class="btn-link">Ver más →</span>
+            </div>
+            <div class="service-card" onclick="location.href='servicios-gestoria.html'">
+                <h3>Gestoría Integral</h3>
+                <p>Trámites legales, administrativos y contables con un enfoque personalizado y eficiente.</p>
+                <span class="btn-link">Ver más →</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="company-name">BAFI CONSULTING MCS</div>
+                <p>Consultoría Estratégica</p>
+                <p>Región y Mercosur</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Email: consultingbafi@gmail.com</p>
+                <p>Tel./WhatsApp: +54 362-591187</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ubicación</h4>
+                <p>Mitre 330</p>
+                <p>Resistencia - Chaco, Argentina</p>
+            </div>
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="social-links">
+                    <!-- Reemplaza los # con tus enlaces reales -->
+                    <a href="https://linkedin.com/in/tu-perfil" target="_blank" title="LinkedIn">in</a>
+                    <a href="https://www.instagram.com/baficonsultingok" target="_blank" title="Instagram">Ig</a>
+                    <a href="https://www.facebook.com/p/BAFI-Consulting-61578766246245/" target="_blank" title="Facebook">f</a>
+                    <a href="https://wa.me/54362591187" target="_blank" title="WhatsApp">Ws</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 BAFI CONSULTING MCS. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>

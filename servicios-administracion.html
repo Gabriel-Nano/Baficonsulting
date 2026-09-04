@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración y Gestión | BAFI CONSULTING MCS</title>
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primario: #000000;
+            --color-secundario: #E89600;
+            --color-oscuro: #1a1a1a;
+            --color-acento: #fff8e1;
+            --color-texto: #333333;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+        body { background-color: var(--blanco); color: var(--color-texto); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--blanco);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--color-secundario);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 50px; width: auto; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--color-primario); }
+        .logo-text span { color: var(--color-secundario); }
+        .logo-subtext { font-size: 0.65rem; color: var(--color-texto); letter-spacing: 2px; margin-top: -4px; }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primario);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--color-secundario); }
+
+        /* --- HERO DEL SERVICIO --- */
+        .service-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(232,150,0,0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 10%;
+            text-align: center;
+            color: var(--blanco);
+        }
+
+        .service-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .service-hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--color-secundario);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- INTRODUCCIÓN --- */
+        .service-intro {
+            padding: 4rem 10%;
+            background-color: var(--blanco);
+            text-align: center;
+        }
+
+        .service-intro h2 {
+            color: var(--color-primario);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-intro h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--color-secundario);
+            margin: 15px auto 0;
+        }
+
+        .service-intro p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* --- SECCIÓN PRINCIPAL A --- */
+        .section-a {
+            padding: 4rem 10%;
+            background-color: var(--color-acento);
+        }
+
+        .section-title {
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .section-title .letter-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            font-size: 2rem;
+            font-weight: 800;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(232,150,0,0.3);
+        }
+
+        .section-title h3 {
+            color: var(--color-primario);
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--blanco);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-secundario);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(232,150,0,0.2);
+        }
+
+        .service-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h4 {
+            color: var(--color-primario);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- SECCIÓN PRINCIPAL B --- */
+        .section-b {
+            padding: 4rem 10%;
+            background-color: var(--blanco);
+        }
+
+        .section-b .section-title .letter-badge {
+            background-color: var(--color-primario);
+        }
+
+        /* ÁMBITOS */
+        .ambitos-box {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-oscuro));
+            color: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .ambitos-box h4 {
+            color: var(--color-secundario);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ambitos-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .ambito-tag {
+            background-color: rgba(232,150,0,0.2);
+            color: var(--color-secundario);
+            padding: 0.7rem 1.3rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--color-secundario);
+            transition: all 0.3s;
+        }
+
+        .ambito-tag:hover {
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            transform: scale(1.05);
+        }
+
+        /* SUBSECCIONES 1, 2, 3, 4 */
+        .subsection {
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            background-color: var(--gris-claro);
+            border-radius: 8px;
+            border-top: 4px solid var(--color-secundario);
+        }
+
+        .subsection-header {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .subsection-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 50%;
+        }
+
+        .subsection-header h4 {
+            color: var(--color-primario);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subsection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .subsection-item {
+            background: var(--blanco);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--color-secundario);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .subsection-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(232,150,0,0.15);
+        }
+
+        .subsection-item .bullet {
+            color: var(--color-secundario);
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .subsection-item p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: inline;
+        }
+
+        /* --- ESPACIO PARA AGREGAR MÁS --- */
+        .more-services {
+            padding: 3rem 10%;
+            background-color: var(--gris-claro);
+            text-align: center;
+            border-top: 2px dashed #ddd;
+        }
+
+        .more-services p {
+            color: #888;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        /* --- CTA --- */
+        .service-cta {
+            padding: 4rem 10%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primario), var(--color-oscuro));
+            color: var(--blanco);
+        }
+
+        .service-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-cta p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background-color: var(--color-secundario);
+            color: var(--blanco);
+            padding: 1.2rem 3rem;
+            border-radius: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border: 2px solid var(--color-secundario);
+        }
+
+        .btn-contact:hover {
+            background-color: transparent;
+            color: var(--color-secundario);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-primario);
+            color: #bdc3c7;
+            padding: 3rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--blanco);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-col .company-name {
+            color: var(--color-secundario);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--color-secundario);
+            font-size: 0.85rem;
+            color: var(--color-secundario);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-hero h1 { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .logo-text { font-size: 1.2rem; }
+            .logo-img { height: 45px; }
+            .section-title { flex-direction: column; text-align: center; }
+            .subsection-header { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="logo-bafi.png" alt="BAFI CONSULTING MCS" class="logo-img">
+            <div>
+                <div class="logo-text">BAFI <span>CONSULTING</span></div>
+                <div class="logo-subtext">MCS</div>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Todos los Servicios</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Hero del Servicio -->
+    <section class="service-hero">
+        <h1>Administración y Gestión</h1>
+        <p class="subtitle">Asistimos a organizaciones desde su creación hasta su consolidación</p>
+    </section>
+
+    <!-- Introducción -->
+    <section class="service-intro">
+        <h2>Gestión Integral</h2>
+        <p>
+            En <strong>BAFI CONSULTING MCS</strong> acompañamos a empresas, asociaciones y organizaciones 
+            en todas las etapas de su desarrollo. Desde los trámites iniciales de constitución hasta 
+            la optimización de procesos de gestión, brindamos soluciones profesionales adaptadas a 
+            cada necesidad específica.
+        </p>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN A: CONSTITUCIÓN Y REGISTRACIÓN -->
+    <!-- ============================================ -->
+    <section class="section-a">
+        <div class="section-title">
+            <span class="letter-badge">A</span>
+            <div>
+                <h3>Constitución y Registración</h3>
+                <p>Todo lo necesario para formalizar y regularizar su organización</p>
+            </div>
+        </div>
+        
+        <div class="services-grid">
+            
+            <!-- Servicio A1 -->
+            <div class="service-card">
+                <span class="icon">📐</span>
+                <h4>Definición de Objeto Social y Forma Jurídica</h4>
+                <p>Asesoramiento para definir el objeto social y seleccionar la forma jurídica más adecuada según las necesidades y objetivos de la organización.</p>
+            </div>
+
+            <!-- Servicio A2 -->
+            <div class="service-card">
+                <span class="icon">📄</span>
+                <h4>Elaboración y Modificación de Estatutos</h4>
+                <p>Redacción, revisión y actualización de estatutos sociales para garantizar el cumplimiento normativo y la correcta operatoria institucional.</p>
+            </div>
+
+            <!-- Servicio A3 -->
+            <div class="service-card">
+                <span class="icon">🏛️</span>
+                <h4>Registración en Organismos Legales y Tributarios</h4>
+                <p>Gestión completa de inscripciones y registraciones ante organismos pertinentes (AFIP, rentas provinciales, municipios, registros públicos).</p>
+            </div>
+
+            <!-- Servicio A4 -->
+            <div class="service-card">
+                <span class="icon">🔄</span>
+                <h4>Cambios de Forma Jurídica o Tributaria</h4>
+                <p>Asistencia en modificaciones de estructura jurídica o régimen tributario para entidades ya constituidas que requieran adaptarse a nuevas necesidades.</p>
+            </div>
+
+            <!-- ESPACIO PARA AGREGAR MÁS -->
+            <!--
+            <div class="service-card">
+                <span class="icon">📌</span>
+                <h4>Nuevo Servicio</h4>
+                <p>Descripción del nuevo servicio.</p>
+            </div>
+            -->
+
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN B: GESTIÓN DE EMPRESAS Y ASOCIACIONES -->
+    <!-- ============================================ -->
+    <section class="section-b">
+        <div class="section-title">
+            <span class="letter-badge">B</span>
+            <div>
+                <h3>Gestión de Empresas y Asociaciones</h3>
+                <p>Optimización administrativa y operativa para organizaciones consolidadas</p>
+            </div>
+        </div>
+
+        <!-- ÁMBITOS DE ACTUACIÓN -->
+        <div class="ambitos-box">
+            <h4>🌐 Ámbitos de Actuación</h4>
+            <div class="ambitos-tags">
+                <span class="ambito-tag">🌾 Rurales</span>
+                <span class="ambito-tag">🏨 Turísticos</span>
+                <span class="ambito-tag">🚚 Transporte</span>
+                <span class="ambito-tag">📦 Logística</span>
+                <span class="ambito-tag">🏪 Comercio</span>
+                <span class="ambito-tag">🌍 Importación/Exportación</span>
+                <span class="ambito-tag">🏭 Industria</span>
+                <span class="ambito-tag">🏥 Salud</span>
+                <span class="ambito-tag">🎓 Educación</span>
+                <!-- Agrega más ámbitos copiando la línea de arriba -->
+            </div>
+        </div>
+
+        <!-- SUBSECCIÓN 1: GESTIÓN CONTABLE Y FINANCIERA -->
+        <div class="subsection">
+            <div class="subsection-header">
+                <span class="subsection-number">1</span>
+                <h4>Gestión Contable y Financiera</h4>
+            </div>
+            <div class="subsection-grid">
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Organización contable:</strong> plan de cuentas, registros, balances.</p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Liquidación de haberes, impuestos y aportes.</strong></p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Análisis financiero y flujos de fondos.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBSECCIÓN 2: ASISTENCIA JURÍDICA INTEGRAL -->
+        <div class="subsection">
+            <div class="subsection-header">
+                <span class="subsection-number">2</span>
+                <h4>Asistencia Jurídica Integral</h4>
+            </div>
+            <div class="subsection-grid">
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Creación e inscripción legal y tributaria de empresas.</strong></p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Asesoramiento civil, comercial, laboral, tributario y penal.</strong></p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Formulación de Contratos, estatutos, representación legal, asistencia en litigios, mediación.</strong></p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Evaluación de riesgos legales y cumplimiento normativo.</strong></p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Capacitación legal para RRHH y trámites ante organismos.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBSECCIÓN 3: ORGANIZACIÓN DE COMISIONES Y COMITÉS -->
+        <div class="subsection">
+            <div class="subsection-header">
+                <span class="subsection-number">3</span>
+                <h4>Organización de Comisiones y Comités</h4>
+            </div>
+            <div class="subsection-grid">
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Coordinación de reuniones.</strong></p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Logística, comunicación y seguimiento de acciones.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBSECCIÓN 4: ORGANIZACIÓN DE EVENTOS Y REUNIONES -->
+        <div class="subsection">
+            <div class="subsection-header">
+                <span class="subsection-number">4</span>
+                <h4>Organización de Eventos y Reuniones</h4>
+            </div>
+            <div class="subsection-grid">
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Planificación integral del evento.</strong></p>
+                </div>
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p><strong>Difusión, ejecución, recepción y evaluación final de resultados.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESPACIO PARA AGREGAR MÁS SUBSECCIONES -->
+        <!--
+        <div class="subsection">
+            <div class="subsection-header">
+                <span class="subsection-number">5</span>
+                <h4>Nuevo Servicio</h4>
+            </div>
+            <div class="subsection-grid">
+                <div class="subsection-item">
+                    <span class="bullet">▸</span>
+                    <p>Descripción del ítem.</p>
+                </div>
+            </div>
+        </div>
+        -->
+
+    </section>
+
+    <!-- Espacio para futuros servicios -->
+    <section class="more-services">
+        <p>📍 Este espacio está disponible para agregar nuevos servicios de administración y gestión según las necesidades emergentes</p>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="contacto" class="service-cta">
+        <h3>¿Necesita asistencia administrativa?</h3>
+        <p>Contáctenos para evaluar sus necesidades y diseñar una propuesta de gestión a medida de su organización.</p>
+        <a href="mailto:consultingbafi@gmail.com" class="btn-contact">Solicitar Información</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="company-name">BAFI CONSULTING MCS</div>
+                <p>Consultoría Estratégica</p>
+                <p>Región y Mercosur</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Email: consultingbafi@gmail.com</p>
+                <p>Tel./WhatsApp: +54 362-591187</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ubicación</h4>
+                <p>Mitre 330</p>
+                <p>Resistencia - Chaco, Argentina</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 BAFI CONSULTING MCS. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>
