@@ -333,6 +333,27 @@
             .footer-content { flex-direction: column; text-align: center; }
             .social-links { justify-content: center; }
         }
+        /* --- MAPA DE GOOGLE --- */
+.map-container {
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(232, 150, 0, 0.3); /* Sombra dorada */
+    border: 2px solid rgba(232, 150, 0, 0.3); /* Borde sutil dorado */
+    transition: all 0.3s ease;
+}
+
+.map-container:hover {
+    box-shadow: 0 12px 35px rgba(232, 150, 0, 0.5); /* Sombra más intensa al pasar el mouse */
+    transform: translateY(-3px); /* Pequeña elevación */
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 220px; /* Un poco más alto */
+    border: none;
+}
     </style>
 </head>
 <body>
@@ -449,10 +470,21 @@
                 <p>Tel./WhatsApp: +54 362-5291197</p>
             </div>
             <div class="footer-col">
-                <h4>Ubicación</h4>
-                <p>Mitre 330</p>
-                <p>Resistencia - Chaco, Argentina</p>
-            </div>
+    <h4>Ubicación</h4>
+    <p>Mitre 330</p>
+    <p>Resistencia - Chaco, Argentina</p>
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d885.1725276591518!2d-58.984483605318246!3d-27.447766848587086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450cf5dcdd8bbb%3A0x4c15b87918673d1b!2sMitre%20330%2C%20H3500BLG%20Resistencia%2C%20Chaco!5e0!3m2!1ses-419!2sar!4v1788795544689!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+            width="100%" 
+            height="200" 
+            style="border:0; border-radius: 8px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
             <div class="footer-col">
                 <h4>Síguenos</h4>
                 <div class="social-links">
